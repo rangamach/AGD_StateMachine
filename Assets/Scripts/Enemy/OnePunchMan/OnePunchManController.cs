@@ -19,8 +19,13 @@ namespace StatePattern.Enemy
         public OnePunchManController(EnemyScriptableObject enemyScriptableObject) : base(enemyScriptableObject)
         {
             enemyView.SetController(this);
+<<<<<<< Updated upstream
             stateMachine = new OnePunchManStateMachine(this);
             InitializeVariables();
+=======
+            CreateStateMachine();
+            stateMachine.ChangeState(States.IDLE);
+>>>>>>> Stashed changes
         }
 
         private void InitializeVariables()
@@ -60,9 +65,16 @@ namespace StatePattern.Enemy
         public override void PlayerEnteredRange(PlayerController targetToSet)
         {
             base.PlayerEnteredRange(targetToSet);
+<<<<<<< Updated upstream
             stateMachine.ChangeState(OnePunchManStates.Shooting);
         }
 
         public override void PlayerExitedRange() => stateMachine.ChangeState(OnePunchManStates.Idle);
+=======
+            stateMachine.ChangeState(States.SHOOTING);
+        }
+
+        public override void PlayerExitedRange() => stateMachine.ChangeState(States.IDLE);
+>>>>>>> Stashed changes
     }
 }

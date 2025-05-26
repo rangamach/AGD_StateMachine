@@ -4,11 +4,15 @@ using UnityEngine;
 
 namespace StatePattern.Enemy
 {
-    public class OnePunchManStateMachine
+    public class OnePunchManStateMachine : IStateMachine
     {
         private OnePunchManController owner;
         private IState currentState;
+<<<<<<< Updated upstream
         protected Dictionary<OnePunchManStates, IState> states = new Dictionary<OnePunchManStates, IState>();
+=======
+        protected Dictionary<States, IState> States = new Dictionary<States, IState>();
+>>>>>>> Stashed changes
 
         public OnePunchManStateMachine(OnePunchManController owner)
         {
@@ -18,6 +22,24 @@ namespace StatePattern.Enemy
             SetOwner();
         }
 
+<<<<<<< Updated upstream
+=======
+        private void CreateStates()
+        {
+            States.Add(global::States.IDLE, new IdleState(this));
+            States.Add(global::States.ROTATING, new RotatingState(this));
+            States.Add(global::States.SHOOTING, new ShootingState(this));
+        }
+
+        private void SetOwner()
+        {
+            foreach(IState state in States.Values)
+            {
+                state.Owner = Owner;
+            }
+        }
+
+>>>>>>> Stashed changes
         public void Update() => currentState?.Update();
         protected void ChangeState(IState newState)
         {
@@ -25,6 +47,7 @@ namespace StatePattern.Enemy
             currentState = newState;
             currentState?.OnStateEnter();
         }
+<<<<<<< Updated upstream
         public void ChangeState(OnePunchManStates newState) => ChangeState(states[newState]);
         private void CreateStates()
         {
@@ -43,5 +66,9 @@ namespace StatePattern.Enemy
         Idle,
         Rotating,
         Shooting,
+=======
+
+        public void ChangeState(States newState) => ChangeState(States[newState]);
+>>>>>>> Stashed changes
     }
 }
