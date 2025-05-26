@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 using StatePattern.Enemy.Bullet;
 using StatePattern.Main;
 using StatePattern.Player;
@@ -14,12 +14,18 @@ namespace StatePattern.Enemy
         private float shootTimer;
         private float targetRotation;
         private PlayerController target;
-
+        private OnePunchManStateMachine stateMachine;
 
         public OnePunchManController(EnemyScriptableObject enemyScriptableObject) : base(enemyScriptableObject)
         {
             enemyView.SetController(this);
+<<<<<<< Updated upstream
+            stateMachine = new OnePunchManStateMachine(this);
             InitializeVariables();
+=======
+            CreateStateMachine();
+            stateMachine.ChangeState(States.IDLE);
+>>>>>>> Stashed changes
         }
 
         private void InitializeVariables()
@@ -36,45 +42,7 @@ namespace StatePattern.Enemy
             if (currentState == EnemyState.DEACTIVE)
                 return;
 
-            if(isIdle && !isRotating && !isShooting)
-            {
-                idleTimer -= Time.deltaTime;
-                if(idleTimer <= 0)
-                {
-                    isIdle = false;
-                    isRotating = true;
-                    targetRotation = (Rotation.eulerAngles.y + 180) % 360;
-                }
-            }
-
-            if(!isIdle && isRotating && !isShooting)
-            {
-                SetRotation(CalculateRotation());
-                if(IsRotationComplete())
-                {
-                    isIdle = true;
-                    isRotating = false;
-                    ResetTimer();
-                }
-            }
-
-            if(!isIdle && !isRotating && isShooting)
-            {
-                Quaternion desiredRotation = CalculateRotationTowardsPlayer();
-                SetRotation(RotateTowards(desiredRotation));
-                
-                if(IsFacingPlayer(desiredRotation))
-                {
-                    shootTimer -= Time.deltaTime;
-                    if (shootTimer <= 0)
-                    {
-                        shootTimer = enemyScriptableObject.RateOfFire;
-                        Shoot();
-                    }
-                }
-
-            }
-
+            stateMachine.Update();
         }
 
         private void ResetTimer() => idleTimer = enemyScriptableObject.IdleTime;
@@ -97,18 +65,16 @@ namespace StatePattern.Enemy
         public override void PlayerEnteredRange(PlayerController targetToSet)
         {
             base.PlayerEnteredRange(targetToSet);
-            isIdle = false;
-            isRotating = false;
-            isShooting = true;
-            target = targetToSet;
-            shootTimer = 0;
+<<<<<<< Updated upstream
+            stateMachine.ChangeState(OnePunchManStates.Shooting);
         }
 
-        public override void PlayerExitedRange() 
-        {
-            isIdle = true;
-            isRotating = false;
-            isShooting = false;
+        public override void PlayerExitedRange() => stateMachine.ChangeState(OnePunchManStates.Idle);
+=======
+            stateMachine.ChangeState(States.SHOOTING);
         }
+
+        public override void PlayerExitedRange() => stateMachine.ChangeState(States.IDLE);
+>>>>>>> Stashed changes
     }
 }
