@@ -12,7 +12,7 @@ namespace StatePattern.UI
         [SerializeField] private LevelSelectionUIView levelSelectionView;
         [SerializeField] private LevelButtonView levelButtonPrefab;
 
-        [Header("Level ENd UI")]
+        [Header("Level End UI")]
         private LevelEndUIController levelEndController;
         [SerializeField] private LevelEndUIView levelEndView;
 
