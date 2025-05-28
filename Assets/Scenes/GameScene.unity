@@ -799,6 +799,7 @@ MonoBehaviour:
   levelScriptableObjects:
   - {fileID: 11400000, guid: bada358cc71564c49831629438d87724, type: 2}
   - {fileID: 11400000, guid: 3ceefc333a7c35a4d8743f64f88754db, type: 2}
+  - {fileID: 11400000, guid: 7c34e5ad108e2fe42992e2b182ef0931, type: 2}
   sfxSource: {fileID: 629913882}
   bgMusicSource: {fileID: 973737936}
 --- !u!4 &2053379264
@@ -808,7 +809,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053379262}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
