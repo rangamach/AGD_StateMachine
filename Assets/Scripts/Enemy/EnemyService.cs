@@ -35,7 +35,7 @@ namespace StatePattern.Enemy
             foreach(EnemyScriptableObject enemySO in enemyDataForLevel)
             {
                 EnemyController enemy = CreateEnemy(enemySO);
-                activeEnemies.Add(enemy);
+                AddEnemy(enemy);
             }
 
             SetEnemyCount();
@@ -56,6 +56,15 @@ namespace StatePattern.Enemy
             {
                 case EnemyType.OnePunchMan:
                     enemy = new OnePunchManController(enemyScriptableObject);
+                    break;
+                case EnemyType.PatrolMan:
+                    enemy = new PatrolManController(enemyScriptableObject);
+                    break;
+                case EnemyType.Hitman:
+                    enemy = new HitmanController(enemyScriptableObject);
+                    break;
+                case EnemyType.Robot:
+                    enemy = new RobotController(enemyScriptableObject);
                     break;
                 default:
                     enemy = new EnemyController(enemyScriptableObject);
@@ -86,5 +95,6 @@ namespace StatePattern.Enemy
         }
 
         private bool PlayerWon() => activeEnemies.Count == 0;
+        public void AddEnemy(EnemyController enemy) => activeEnemies.Add(enemy);
     }
 }
