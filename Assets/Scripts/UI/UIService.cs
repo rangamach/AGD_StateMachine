@@ -12,14 +12,13 @@ namespace StatePattern.UI
         [SerializeField] private LevelSelectionUIView levelSelectionView;
         [SerializeField] private LevelButtonView levelButtonPrefab;
 
-        [Header("Level ENd UI")]
+        [Header("Level End UI")]
         private LevelEndUIController levelEndController;
         [SerializeField] private LevelEndUIView levelEndView;
 
         [Header("Gameplay UI")]
         private GameplayUIController gameplayController;
         [SerializeField] private GameplayUIView gameplayView;
-        [SerializeField] private CameraShake cameraShake;
 
         private void Start()
         {
@@ -38,8 +37,6 @@ namespace StatePattern.UI
         private void ShowGameplayUI(int levelId) => gameplayController.Show();
 
         public void ToggleKillOverlay(bool value) => gameplayController.ToggleKillOverlay(value);
-
-        public void ShakeCamera() => cameraShake.ShakeCamera();
 
         public void GameWon()
         {

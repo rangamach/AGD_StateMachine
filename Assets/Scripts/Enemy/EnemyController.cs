@@ -13,10 +13,10 @@ namespace StatePattern.Enemy
 
         protected int currentHealth;
         protected EnemyState currentState;
-        protected NavMeshAgent Agent => enemyView.Agent;
-        protected EnemyScriptableObject Data => enemyScriptableObject;
-        protected Quaternion Rotation => enemyView.transform.rotation;
-        protected Vector3 Position => enemyView.transform.position;
+        public NavMeshAgent Agent => enemyView.Agent;
+        public EnemyScriptableObject Data => enemyScriptableObject;
+        public Quaternion Rotation => enemyView.transform.rotation;
+        public Vector3 Position => enemyView.transform.position;
 
 
         public EnemyController(EnemyScriptableObject enemyScriptableObject)
@@ -54,8 +54,6 @@ namespace StatePattern.Enemy
         }
 
         public void ToggleKillOverlay(bool value) => GameService.Instance.UIService.ToggleKillOverlay(value);
-
-        public void ShakeCamera() => GameService.Instance.UIService.ShakeCamera();
 
         public void SetRotation(Vector3 eulerAngles) => enemyView.transform.rotation = Quaternion.Euler(eulerAngles);
 
